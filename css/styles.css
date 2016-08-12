@@ -1,7 +1,58 @@
-.cell {
-  display: inline-block;
-  margin: 2em;
-  font-size: 2em;
-  font-family: helvetica;
+html, body {
+  position: relative;
+	margin: 0;
+  height: 100%;
+	width: 100%;
+}
+
+.container {
+	position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
 	text-align: center;
+}
+
+.title {
+	margin-top: 0;
+  margin-bottom: 0;
+  font-family: monospace;
+  font-size: 64px;
+}
+
+.description {
+	margin-top: 3px;
+  margin-bottom: 10px;
+  font-size: 19px;
+  text-transform: uppercase;
+  font-family: sans-serif;
+  color: rgb(70,70,70);
+}
+
+.table {
+	margin: 0 auto;
+	margin-top: 3rem;
+}
+
+.row:first-child .cell {
+	border-top: 0;
+}
+
+.row .cell:first-child {
+	border-left: 0;
+}
+
+.cell {
+	display: inline-block;
+  margin: 0;
+  padding: 1em 1.5em;
+  height: 60px;
+  width: 30px;
+
+  border-top: 3px solid black;
+  border-left: 3px solid black;
+
+  font-family: helvetica;
+  font-size: 3em;
+  text-align: center;
 }

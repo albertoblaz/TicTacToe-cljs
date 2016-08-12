@@ -6,23 +6,24 @@
 
 (enable-console-print!)
 
-(defonce values (r/atom [[0 0 0] [0 0 0] [0 0 0]]))
+(defonce values (r/atom [[0 1 0] [0 0 0] [1 0 0]]))
 
 (defn validate [])
 
 (defn cell [value]
-	[:td.cell {:on-click onclick}
-		(if (= value 1) "X" "0")])
+	[:td.cell (if (= value 1) "X" "O")])
 
 (defn row [row]
 	[:tr.row (map cell row)])
 
 (defn table [values]
-	[:table>tbody (map row values)])
+	[:table.table {:cell-padding "0" :cell-spacing "0"}
+		[:tbody (map row values)]])
 
 (defn app []
-  [:div
-		[:p "Tic Tac Toe made with ClojureScript and Reagent. Huzzah!"]
+  [:div.container
+  	[:h1.title "Tic Tac Toe!"]
+		[:h2.description "♥ ClojureScript and Reagent. Huzzah!"]
   	[table @values]])
 
 
