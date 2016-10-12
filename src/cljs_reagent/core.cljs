@@ -6,25 +6,45 @@
 
 (enable-console-print!)
 
-(defonce values (r/atom [[0 1 0] [0 0 0] [1 0 0]]))
+(defonce values
+	[
+		[(r/atom 0) (r/atom 0) (r/atom 0)]
+		[(r/atom 0) (r/atom 0) (r/atom 0)]
+		[(r/atom 0) (r/atom 0) (r/atom 0)]])
 
 (defn validate [])
 
-(defn cell [value]
-	[:td.cell (if (= value 1) "X" "O")])
+(defn make-move []
+	)
 
-(defn row [row]
-	[:tr.row (map cell row)])
+(defn on-click-cell [value]
+	(make-move
+		reset! value 1))
+
+(defn cell [value]
+	[:td.cell
+		{:on-click #(on-click-cell)}  "What if the cell was already clicked?"
+		(if (= @value 1) "X" "-")])
+
+(defn row [values]
+	[:tr.row
+		(for [val values]
+			^{:key (:id val)}
+			[cell val])])
 
 (defn table [values]
-	[:table.table {:cell-padding "0" :cell-spacing "0"}
-		[:tbody (map row values)]])
+	[:table.table
+		{:cell-padding "0" :cell-spacing "0"}
+		[:tbody
+			(for [val values]
+				^{:key (:id val)}
+				[row val])]])
 
 (defn app []
   [:div.container
   	[:h1.title "Tic Tac Toe!"]
 		[:h2.description "♥ ClojureScript and Reagent. Huzzah!"]
-  	[table @values]])
+  	[table values]])
 
 
 ((defn main []
